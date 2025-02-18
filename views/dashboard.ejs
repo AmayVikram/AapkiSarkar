@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+<div class="Project-form">
+<h2>Add Project</h2>
+<form action="/projects/add" method="POST">
+    <label for="name">Project Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="cost">Estimated Cost:</label>
+    <input type="number" id="cost" name="cost" required>
+
+    <label for="description">Project Description:</label>
+    <textarea id="description" name="description" rows="4" required></textarea>
+
+    <button type="submit">Submit</button>
+</form>
+</div>
+
+<%- include('partials/footer') %>

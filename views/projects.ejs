@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+<h1>Projects</h1>
+
+<div class="container" id="<%= user ? user._id : 'default' %>">
+    <% projects.forEach(project => { %>
+        <div class="card" data-id="<%= project._id %>">
+            <h2><%= project.name %></h2>
+            <p><%= project.description %></p>
+            <p><strong>Estimated Cost:</strong> $<%= project.cost %></p>
+
+            <p><strong>Votes:</strong> ✅ <span class="votes-for"><%= project.votesFor %></span> | ❌ <span class="votes-against"><%= project.votesAgainst %></span></p>
+
+            <div class="vote-buttons">
+                <button class="vote-button vote-for">Vote In Favor</button>
+                <button class="vote-button vote-against">Vote Against</button>
+            </div>
+
+            <% if (user && user.role=== 'admin') { %> <!-- Check if the user is an admin -->
+                <div class="delete-button-container">
+                    <button class="delete-button" onclick="deleteProject('<%= project._id %>')">Delete Project</button>
+                </div>
+            <% } %>
+        </div>
+    <% }) %>
+</div>
+
+<script>
+    document.querySelectorAll('.card').forEach(card => {
+        const projectId = card.getAttribute('data-id');
+
+        card.querySelector('.vote-for').addEventListener('click', () => vote(projectId, 'for', card));
+        card.querySelector('.vote-against').addEventListener('click', () => vote(projectId, 'against', card));
+    });
+
+    async function vote(projectId, voteType, card) {
+        // Get the userId from the container's id
+        const userId = document.querySelector('.container').id;
+
+        const response = await fetch(`/vote/${projectId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, voteType })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            card.querySelector('.votes-for').textContent = data.votesFor;
+            card.querySelector('.votes-against').textContent = data.votesAgainst;
+        } else {
+            alert(data.message);
+        }
+    }
+
+    // Function to delete the project
+    async function deleteProject(projectId) {
+        const response = await fetch(`/delete/project/${projectId}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            alert('Project deleted successfully.');
+            // Optionally, you can remove the card from the UI
+            document.querySelector(`.card[data-id="${projectId}"]`).remove();
+        } else {
+            const data = await response.json();
+            alert(data.message);
+        }
+    }
+</script>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,215 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+header,footer,main,aside,nav {
+    background-color: steelblue;
+    color: white;
+    padding: 20px;
+    border: skyblue 1px solid;
+}
+
+body{
+    font-size: 16px;
+    line-height: 1.5;
+    color: black;
+    background: #f5f5f5;
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas: 
+    'header'
+    'content'
+    'footer'
+    ;
+    
+    grid-template-rows: 10% 1fr 10%;
+}
+
+/* header */
+header {
+    grid-area:header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+header a{
+    color: white;
+    text-decoration: none;
+}
+header a:focus,header a:hover {
+    text-decoration: none; 
+    color: inherit;  
+}
+.login-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.login-btn:hover {
+    color:orange;
+}
+header li{
+    display: inline;
+}
+
+
+
+
+main{
+    grid-area: content;
+}
+footer{
+    grid-area: footer;
+}
+
+
+/* login  */
+
+.login-form {
+    display: flex;              
+    flex-direction: column;     
+    justify-content: center;  
+    align-items: center;                     
+    max-width: 400px;
+    min-height: 80vh;           
+    margin: 0 auto;             
+    padding: 20px;
+    background-color: #f4f4f4; 
+    border-radius: 8px;       
+    color:black  
+}
+
+.login-form form label, form input, form button {
+    width: 100%;               
+    margin-bottom: 15px;
+    margin: 3% 0;
+    padding: 3% 0;
+}
+.login-form h2{
+    margin-bottom: 15%;
+
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.verify-form{
+    display: flex;
+    align-items: center;
+}
+.verify-form input{
+  margin-right: 10px;
+  width: 100px;
+}
+.verify-form h2{
+    margin: 15px
+}
+
+/* dashboard */
+
+.Project-form{
+    display: flex;              
+    flex-direction: column;     
+    justify-content: center;  
+    align-items: center;                     
+    max-width: 400px;
+    min-height: 80vh;           
+    margin: 0 auto;             
+    padding: 20px;
+    background-color: #f4f4f4; 
+    border-radius: 8px;       
+    color:black  
+}
+.Project-form textarea{
+    display: block;
+    width: 100%;
+}
+
+/* projects */
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: black;
+}
+.card p {
+    color: #555;
+}
+
+.vote-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Styling for each button */
+.vote-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+/* Specific styles for voting "in favor" button */
+#voteFor {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+/* Specific styles for voting "against" button */
+#voteAgainst{
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+/* Hover effect */
+.vote-button:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
