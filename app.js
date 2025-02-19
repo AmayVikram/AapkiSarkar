@@ -8,9 +8,6 @@ const app = express();
 require('dotenv').config();
 
 
-
-
-
 const transporter = nodemailer.createTransport({
     service: 'gmail', 
     auth: {
@@ -204,19 +201,27 @@ const Project = require('./models/Projects'); // Import the schema
 // Handle project submission
 app.post('/projects/add', async (req, res) => {
     try {
-        const { name, cost, description } = req.body;
+        const { name,category,cost, description, deadline } = req.body;
 
-        // Create a new project
-        const newProject = new Project({ name, cost, description });
+        // Create a new project with all fields
+        const newProject = new Project({
+            name,
+            cost,
+            description,
+            category,
+            deadline
+        });
 
         // Save to database
         await newProject.save();
 
         res.redirect('/projects'); // Redirect to projects list page
     } catch (error) {
+        console.log(error)
         res.status(500).send('Error saving project');
     }
 });
+
 
 
 // Route to display all projects

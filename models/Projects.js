@@ -15,6 +15,15 @@ const projectSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    category: {
+        type: String,
+        required: true,
+        enum: ["Technology", "Education", "Health", "Environment","Infrastructure"] // Ensuring only valid categories
+    },
+    deadline: {
+        type: Date,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -28,8 +37,8 @@ const projectSchema = new mongoose.Schema({
         default: 0
     },
     votedBy: {
-        type:[String],
-        default:[]
+        type: [String],
+        default: []
     }
 });
 

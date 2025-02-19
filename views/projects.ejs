@@ -1,23 +1,27 @@
 <%- include('partials/header') %>
 
-
-<h1 class=" project-heading">Projects</h1>
+<h1 class="project-heading">Projects</h1>
 
 <div class="container" id="<%= user ? user._id : 'default' %>">
     <% projects.forEach(project => { %>
         <div class="card" data-id="<%= project._id %>">
             <h2><%= project.name %></h2>
+            <p class="category-tag"><%= project.category %></p>
             <p><%= project.description %></p>
-            <p><strong>Estimated Cost:</strong> $<%= project.cost %></p>
+            <p><strong>Estimated Cost:</strong> ₹<%= project.cost %></p>
+
+            <p><strong>Deadline:</strong> <%= new Date(project.deadline).toLocaleDateString() %></p>
+            <p class="time-left"><strong>Time Left:</strong> <%= Math.ceil((new Date(project.deadline) - new Date()) / (1000 * 60 * 60 * 24)) %> days</p>
 
             <p><strong>Votes:</strong> ✅ <span class="votes-for"><%= project.votesFor %></span> | ❌ <span class="votes-against"><%= project.votesAgainst %></span></p>
+
 
             <div class="vote-buttons">
                 <button class="vote-button vote-for">Vote In Favor</button>
                 <button class="vote-button vote-against">Vote Against</button>
             </div>
 
-            <% if (user && user.role=== 'admin') { %> <!-- Check if the user is an admin -->
+            <% if (user && user.role === 'admin') { %> <!-- Check if the user is an admin -->
                 <div class="delete-button-container">
                     <button class="delete-button" onclick="deleteProject('<%= project._id %>')">Delete Project</button>
                 </div>
@@ -35,7 +39,6 @@
     });
 
     async function vote(projectId, voteType, card) {
-        // Get the userId from the container's id
         const userId = document.querySelector('.container').id;
 
         const response = await fetch(`/vote/${projectId}`, {
@@ -48,12 +51,15 @@
         if (response.ok) {
             card.querySelector('.votes-for').textContent = data.votesFor;
             card.querySelector('.votes-against').textContent = data.votesAgainst;
+
+            // Update progress bar
+            const totalVotes = data.votesFor + data.votesAgainst;
+            card.querySelector('.progress-bar').style.width = totalVotes > 0 ? (data.votesFor / totalVotes * 100) + "%" : "0%";
         } else {
             alert(data.message);
         }
     }
 
-    // Function to delete the project
     async function deleteProject(projectId) {
         const response = await fetch(`/delete/project/${projectId}`, {
             method: 'DELETE',
@@ -62,7 +68,6 @@
 
         if (response.ok) {
             alert('Project deleted successfully.');
-            // Optionally, you can remove the card from the UI
             document.querySelector(`.card[data-id="${projectId}"]`).remove();
         } else {
             const data = await response.json();

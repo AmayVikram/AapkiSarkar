@@ -78,6 +78,7 @@ main{
     background-image: url("/images/—Pngtree—orange\ yellow\ green\ indian\ flag_1454481.png");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
    
 }
 footer{
@@ -164,6 +165,7 @@ form button:hover {
 .Project-form h2{
     font-size: 3em;
     font-family: Alex brush;
+
 }
 
 /* projects */
@@ -201,7 +203,7 @@ form button:hover {
 
 .card p {
     font-size: 1rem;
-    color: #666;
+    color: #333;
     margin: 5px 0;
 }
 
@@ -265,6 +267,20 @@ form button:hover {
 
 }
 
+/* footer */
+
+footer {
+    background: linear-gradient(to right, #f0fff4, #83d98f, #f0fff4);
+
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    bottom: 0;
+    width: 100%;
+}
+footer a{
+    color: white;
+}
 
 
 
