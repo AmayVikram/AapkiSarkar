@@ -282,6 +282,58 @@ footer a{
     color: white;
 }
 
+/* profile */
+
+
+
+.user-heading{
+    font-family: Alex Brush;
+    font-size:3em;
+    text-align: center;
+    color: navy;
+}
+
+
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures text and image are centered */
+    background: #f9f9f9;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    
+    text-align: left;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    min-height: 50vh;
+    width: 100%; /* Ensures full viewport width */
+}
+
+
+.profile-img {
+    width: 240px;
+    height: 240px;
+    border-radius: 25%; /* Makes the image circular */
+   
+    margin-right: 20px; /* Spacing between image and text */
+    
+}
+.user-details{
+    color: black;
+}
+
+
+
+
+
+
 
 
 

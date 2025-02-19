@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <title>govern</title>
+    <link rel="icon" type="image/png" href="/images/ashoka.png">
+    <title>Aapki Sarkar</title>
 </head>
 <body>
     <header>
@@ -18,7 +19,7 @@
             
             <% if (user) { %>
                 <li><a href="/logout"><button class="login-btn">Log Out</button></a></li>
-                <li><button class="login-btn"><%= user.name %></button></li>
+                <li><a href="/profile"><button class="login-btn"><%= user.name %></button></a></li>
             <% } else { %>
                 <li><a href="/login"><button class="login-btn">Login</button></a></li>
                 <li><a href="/signup"><button class="login-btn">Sign Up</button></a></li>

@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        lowercase: true
+        lowercase: true,
+        unique:true
     },
     mobile: {
         type: String,
@@ -27,6 +28,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin'],  // Define allowed roles
         default: 'user'
+    },
+    gender:{
+        type:String,
+        required:true
     },
     createdAt: {
         type: Date,

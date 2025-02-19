@@ -63,7 +63,7 @@ app.get('/signup', (req, res) => {
 
 // Route for signup (POST)
 app.post('/signup', async (req, res) => {
-    const { name, email, mobile, password, admin_key } = req.body;
+    const { name,email,mobile,password,admin_key,gender } = req.body;
     console.log(req.body);
 
     try {
@@ -72,6 +72,12 @@ app.post('/signup', async (req, res) => {
         if (existingUser) {
             return res.render('signup', { title: "Sign Up", errorMessage: "User already exists." });
         }
+
+        const existingUser1 = await User.findOne({ email });
+        if (existingUser1) {
+            return res.render('signup', { title: "Sign Up", errorMessage: "User already exists." });
+        }
+
 
         // Generate 6 digit OTP
         const otp = Math.floor(100000 + Math.random() * 900000); 
@@ -82,7 +88,7 @@ app.post('/signup', async (req, res) => {
 
         // Send OTP to user's email
         const mailOptions = {
-            from: 'singhamay120@gmail.com', // Replace with your email
+            from:process.env.EMAIL_USER, 
             to: email,
             subject: 'OTP for Account Creation',
             text: `Your OTP for account creation is: ${otp}`
@@ -101,7 +107,8 @@ app.post('/signup', async (req, res) => {
             name,
             email,
             mobile,
-            password
+            password,
+            gender
         });
 
         if (admin_key === secret_key) {
@@ -170,7 +177,7 @@ app.post('/login', async (req, res) => {
         console.log(tempStorage.loggedInUser)
 
         
-        return res.redirect(user.role === 'admin' ? '/dashboard' : '/projects');
+        return res.redirect('/profile');
 
     } catch (error) {
         console.error(error);
@@ -289,6 +296,25 @@ app.delete('/delete/project/:projectId', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+app.get('/profile', async (req, res) => {
+    if (tempStorage.loggedInUser === null) {
+        return res.render('login', { title: "Login Page", errorMessage: "Please Login" });
+    }
+
+    try {
+        
+        const user = tempStorage.loggedInUser; 
+
+        const votedProjects = await Project.find({ votedBy: user._id });
+
+        res.render('page', { votedProjects: votedProjects });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+});
+
 
 
 

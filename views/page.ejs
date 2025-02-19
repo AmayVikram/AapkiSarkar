@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+
+<h1 class="user-heading">User Profile</h1>
+
+
+<div class="profile-container">
+    <div class="profile">
+        <% if (user.gender === 'male') { %>
+            <img src="/images/default-male-photo.png" class="profile-img" alt="Male Profile">
+        <% } else { %>
+            <img src="/images/Untitled.jpg" class="profile-img" alt="Female Profile">
+        <% } %>
+
+        <div class="user-details">
+            <p><strong>Name:</strong> <%= user.name %></p>
+            <p><strong>Mobile No.:</strong> <%= user.mobile %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Role:</strong> <%= user.role %></p>
+        </div>
+    </div>
+</div>
+
+
+
+<h1 class="project-heading">Projects Voted For</h1>
+
+<div class="container" id="<%= user ? user._id : 'default' %>">
+    <% votedProjects.forEach(project => { %>
+        <div class="card" data-id="<%= project._id %>">
+            <h2><%= project.name %></h2>
+            <p class="category-tag"><%= project.category %></p>
+            <p><%= project.description %></p>
+            <p><strong>Estimated Cost:</strong> ₹<%= project.cost %></p>
+
+            <p><strong>Deadline:</strong> <%= new Date(project.deadline).toLocaleDateString() %></p>
+            <p class="time-left"><strong>Time Left:</strong> <%= Math.ceil((new Date(project.deadline) - new Date()) / (1000 * 60 * 60 * 24)) %> days</p>
+
+            <p><strong>Votes:</strong> ✅ <span class="votes-for"><%= project.votesFor %></span> | ❌ <span class="votes-against"><%= project.votesAgainst %></span></p>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('partials/footer') %>
