@@ -8,6 +8,9 @@ const app = express();
 require('dotenv').config();
 
 
+
+
+
 const transporter = nodemailer.createTransport({
     service: 'gmail', 
     auth: {
@@ -15,6 +18,8 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS  
     }
 });
+
+const secret_key= process.env.SECRET_KEY
 
 // In-memory storage for OTPs and temporary user data
 const tempStorage = {
@@ -102,7 +107,7 @@ app.post('/signup', async (req, res) => {
             password
         });
 
-        if (admin_key === '123456') {
+        if (admin_key === secret_key) {
             newUser.role = 'admin';
             console.log('Admin signup detected');
         }
@@ -167,7 +172,7 @@ app.post('/login', async (req, res) => {
         console.log("login success")
         console.log(tempStorage.loggedInUser)
 
-        // Redirect based on role
+        
         return res.redirect(user.role === 'admin' ? '/dashboard' : '/projects');
 
     } catch (error) {
@@ -176,7 +181,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Route for dashboard (accessible only if logged in)
+
 app.get('/dashboard', (req, res) => {
     if (!tempStorage.loggedInUser) {
         return res.render('login', { title: "Login Page", errorMessage: "Please Login" });

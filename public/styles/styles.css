@@ -25,7 +25,9 @@ body{
     ;
     
     grid-template-rows: 10% 1fr 10%;
+   
 }
+
 
 /* header */
 header {
@@ -34,8 +36,8 @@ header {
     justify-content: space-between;
     align-items: center; 
     padding: 10px 20px;
-    background-color: #333;
-    color: white;
+    background: linear-gradient(to right, #FFF5E1, #FFD699, #FF8C42);
+    
 }
 header a{
     color: white;
@@ -45,8 +47,12 @@ header a:focus,header a:hover {
     text-decoration: none; 
     color: inherit;  
 }
+header h1{
+    color:#06038D;
+    font-family: Alex Brush;
+
+}
 .login-btn {
-    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -56,8 +62,9 @@ header a:focus,header a:hover {
     background-color: transparent;
 }
 
+
 .login-btn:hover {
-    color:orange;
+    color:#046A38;
 }
 header li{
     display: inline;
@@ -68,6 +75,10 @@ header li{
 
 main{
     grid-area: content;
+    background-image: url("/images/—Pngtree—orange\ yellow\ green\ indian\ flag_1454481.png");
+    background-position: center;
+    background-repeat: no-repeat;
+   
 }
 footer{
     grid-area: footer;
@@ -85,7 +96,8 @@ footer{
     min-height: 80vh;           
     margin: 0 auto;             
     padding: 20px;
-    background-color: #f4f4f4; 
+    background-color: rgba(255, 255, 255, 0.8); 
+ 
     border-radius: 8px;       
     color:black  
 }
@@ -97,12 +109,15 @@ footer{
     padding: 3% 0;
 }
 .login-form h2{
-    margin-bottom: 15%;
+    
+    font-size: 3em;
+    font-family: Alex brush;
+
 
 }
 
 form button {
-    background-color: #007bff;
+    background-color: green;
     color: white;
     font-size: 16px;
     border: none;
@@ -112,7 +127,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #0056b3;
+    background-color: orange;
 }
 
 .verify-form{
@@ -138,13 +153,17 @@ form button:hover {
     min-height: 80vh;           
     margin: 0 auto;             
     padding: 20px;
-    background-color: #f4f4f4; 
+    background-color: rgba(255, 255, 255, 0.8);  
     border-radius: 8px;       
     color:black  
 }
 .Project-form textarea{
     display: block;
     width: 100%;
+}
+.Project-form h2{
+    font-size: 3em;
+    font-family: Alex brush;
 }
 
 /* projects */
@@ -153,57 +172,99 @@ form button:hover {
 .container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
+    padding: 20px;
 }
+
 .card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 20px;
     width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    
 }
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 .card h2 {
-    font-size: 18px;
+    font-size: 1.4rem;
+    color: #333;
     margin-bottom: 10px;
-    color: black;
 }
+
 .card p {
-    color: #555;
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
 }
 
 .vote-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 10px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-/* Styling for each button */
 .vote-button {
-    padding: 10px 20px;
-    font-size: 14px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    
+    transition: background 0.3s;
 }
 
-/* Specific styles for voting "in favor" button */
-#voteFor {
-    background-color: #4CAF50; /* Green */
+.vote-for {
+    background: #4CAF50;
     color: white;
 }
 
-/* Specific styles for voting "against" button */
-#voteAgainst{
-    background-color: #f44336; /* Red */
+.vote-for:hover {
+    background: #45A049;
+}
+
+.vote-against {
+    background: orange;
     color: white;
 }
 
-/* Hover effect */
-.vote-button:hover {
-    opacity: 0.8;
+.vote-against:hover {
+    background: #C0392B;
 }
+
+.delete-button-container {
+    margin-top: 10px;
+}
+
+.delete-button {
+    background: #D32F2F;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.delete-button:hover {
+    background: #B71C1C;
+}
+
+.project-heading{
+    text-align: center;
+    font-family: Alex Brush;
+    color: #06038D;
+    font-size: 3em;
+
+}
+
 
 
 

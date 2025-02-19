@@ -1,19 +1,35 @@
 <%- include('partials/header') %>
 
 <div class="Project-form">
-<h2>Add Project</h2>
-<form action="/projects/add" method="POST">
-    <label for="name">Project Name:</label>
-    <input type="text" id="name" name="name" required>
+    <h2>Add Project</h2>
+    <form action="/projects/add" method="POST">
+        <label for="name">Project Name:</label>
+        <input type="text" id="name" name="name" required>
 
-    <label for="cost">Estimated Cost:</label>
-    <input type="number" id="cost" name="cost" required>
 
-    <label for="description">Project Description:</label>
-    <textarea id="description" name="description" rows="4" required></textarea>
+        <label for="category" style="margin:5px 0;">Category:</label>
+        <select id="category" style="display:block; width: 100%;margin: 5px 0px;"name="category" required>
+            <option value="Technology">Technology</option>
+            <option value="Education">Education</option>
+            <option value="Health">Health</option>
+            <option value="Environment">Environment</option>
+            <option value="Infrastruture">Infrastruture</option>
+        </select>
 
-    <button type="submit">Submit</button>
-</form>
+        <label for="cost">Estimated Cost:</label>
+        <input type="number" id="cost" name="cost" required>
+
+
+
+        <label for="description">Project Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+
+        <label for="deadline">Deadline:</label>
+        <input type="date" id="deadline" name="deadline" required>
+
+        <button type="submit">Submit</button>
+    </form>
 </div>
 
 <%- include('partials/footer') %>
