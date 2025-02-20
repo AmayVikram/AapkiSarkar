@@ -69,6 +69,15 @@ header h1{
 header li{
     display: inline;
 }
+.header-icon{
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+}
+.header-div1{
+    display: flex;
+    
+}
 
 
 

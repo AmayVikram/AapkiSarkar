@@ -9,38 +9,38 @@
         </script>
     <% } %>
 
-
     <form action="/signup" method="post">
         <label for="name">Name</label>
-        <input type="text" id="mobile" name="name" placeholder="Enter your Name" required >
+        <input type="text" id="name" name="name" placeholder="Enter your Name" required value="<%= newUser ? newUser.name : '' %>">
 
         <label for="email">E-mail</label>
-        <input type="text" id="mobile" name="email" placeholder="Enter your email Address" required >
+        <input type="text" id="email" name="email" placeholder="Enter your email Address" required value="<%= newUser ? newUser.email : '' %>">
 
         <label for="mobile">Mobile Number:</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required pattern="[0-9]{10}">
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required pattern="[0-9]{10}" value="<%= newUser ? newUser.mobile : '' %>">
 
         <label for="category" style="margin:5px 0;">Category:</label>
-        <select id="category" style="display:block; width: 100%;margin: 5px 0px;"name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-            
+        <select id="category" style="display:block; width: 100%;margin: 5px 0px;" name="gender" required>
+            <option value="male" <%= newUser && newUser.gender === 'male' ? 'selected' : '' %>>Male</option>
+            <option value="female" <%= newUser && newUser.gender === 'female' ? 'selected' : '' %>>Female</option>
+            <option value="other" <%= newUser && newUser.gender === 'other' ? 'selected' : '' %>>Other</option>
         </select>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required value="<%= newUser ? newUser.password : '' %>">
 
-        <label for="password">Admin Key (leave empty if not applicable):</label>
-        <input type="password" id="password" name="admin_key" placeholder="Enter the key" >
+        <label for="admin_key">Admin Key (leave empty if not applicable):</label>
+        <input type="password" id="admin_key" name="admin_key" placeholder="Enter the key" value="<%= newUser ? newUser.admin_key : '' %>">
 
         <button type="submit">GET OTP</button>
     </form>
 
+    <% if (newUser) { %>
     <form action="/verify-otp" method="post" class="verify-form">
-        <input type="tel" id="mobile" name="otp" placeholder="Enter the OTP" required pattern="[0-9]{6}">
+        <input type="tel" id="otp" name="otp" placeholder="Enter the OTP" required pattern="[0-9]{6}">
         <button type="submit">Submit</button>
     </form>
+    <% } %>
 </div>
 
 <%- include('partials/footer') %>
