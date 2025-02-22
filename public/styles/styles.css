@@ -337,6 +337,67 @@ footer a{
 .user-details{
     color: black;
 }
+/* landing page */
+
+.main-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255, 0)
+}
+
+.content-wrapper {
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 4.5rem;
+    color: #000080; /* Navy Blue */
+    margin-bottom: 250px;
+    font-weight: bold;
+    font-family: 'Alex Brush'
+
+}
+
+.slogan {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-orange {
+    background-color: #FF9933; /* Orange */
+    color: white;
+}
+
+.btn-blue {
+    background-color:#046A38; /* Navy Blue */
+    color: white;
+}
+
+
 
 
 

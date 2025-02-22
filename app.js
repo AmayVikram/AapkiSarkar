@@ -53,7 +53,7 @@ const User = require('./models/User'); // Import the User model
 
 // Route to render the homepage
 app.get('/', (req, res) => {
-    res.render('login', { title: "Login", errorMessage: null });
+    res.render('home', { title: "Home"});
 });
 
 // Route for signup (GET)
