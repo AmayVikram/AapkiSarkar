@@ -130,10 +130,23 @@ app.post('/verify-otp', async (req, res) => {
     const { otp } = req.body;
     console.log(req.session.otp)
     if (otp == req.session.otp) {
-        const newUser = new User(req.session.newUser);
+        const userData = req.session.newUser;
+        const newUser = new User(userData);
+        try {
+            await newUser.save();
+        } catch (error) {
+            if (error.code === 11000) {
+                const field = Object.keys(error.keyPattern)[0];
+                return res.render('signup', { 
+                    title: "Sign Up", 
+                    errorMessage: `This ${field} is already registered.`,
+                    newUser: req.session.newUser 
+                });
+            }
+        }
 
             // Save the user to the database
-            await newUser.save(); // Save user to database
+    // Save user to database
 
         // Clear session storage
         req.session.otp = null;
