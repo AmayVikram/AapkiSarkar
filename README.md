@@ -21,8 +21,8 @@ Aapki Sarkar is a web platform that enables citizens to participate in democrati
 ### Clone the Repository
 
 ```sh
-git clone https://github.com/Amay/aapki-sarkar.git
-cd Aapki Sarkar
+git clone https://github.com/AmayVikram/AapkiSarkar.git
+cd AapkiSarkar
 ```
 
 ### Install Dependencies
