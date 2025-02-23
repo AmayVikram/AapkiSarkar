@@ -243,6 +243,27 @@ app.post('/vote/:id', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
+// Delete project route
+app.delete('/delete/project/:id', async (req, res) => {
+    try {
+        // Check if user is logged in and is admin
+        if (!req.session.user || req.session.user.role !== 'admin') {
+            return res.status(403).json({ message: 'Unauthorized: Admin access required' });
+        }
+
+        const projectId = req.params.id;
+        const result = await Project.findByIdAndDelete(projectId);
+        
+        if (!result) {
+            return res.status(404).json({ message: 'Project not found' });
+        }
+
+        res.json({ message: 'Project deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error deleting project' });
+    }
+});
 
 // Profile route
 app.get('/profile', async (req, res) => {

@@ -222,6 +222,12 @@ form button:hover {
     gap: 10px;
     margin-top: 10px;
 }
+.project-heading{
+    text-align: center;
+    color: navy;
+    font-family: Alex Brush;
+    font-size: 2em;
+}
 
 .vote-button {
     padding: 8px 14px;
@@ -268,7 +274,7 @@ form button:hover {
     background: #B71C1C;
 }
 
-.project-heading{
+.projects-heading{
     text-align: center;
     font-family: Alex Brush;
     color: #06038D;
@@ -396,6 +402,8 @@ footer a{
     background-color:#046A38; /* Navy Blue */
     color: white;
 }
+
+
 
 
 
